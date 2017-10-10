@@ -1,7 +1,11 @@
 import requests
+import sys
 from jsontraverse.parser import JsonTraverseParser
 
-r = requests.get("https://www.reddit.com/r/python.json")
+if len(sys.argv) > 1:
+  r = requests.get(f"https://www.reddit.com/r/{sys.argv[1]}.json")
+else:
+  r = requests.get("https://www.reddit.com/r/python.json")  
 
 parser = JsonTraverseParser(r.text)
 
